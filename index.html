@@ -50,6 +50,20 @@ document.cpanel.score.value=totalhits;
 display("Идет игра");
 launch();
 showtime(gamelength);
+function display(msg) {
+document.cpanel.state.value=msg;
+}
+function launch() {
+var launched=false;
+while(!launched) {
+mynum=random();
+if(mynum!=currentpos) {
+document.dmz.elements[mynum].checked=true;
+currentpos=mynum;
+launched=true;
+      }
+   }
+}
 
 </head>
 <body>
