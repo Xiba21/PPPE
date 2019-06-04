@@ -8,14 +8,17 @@ timerID=null
 var playing=false;
 var numholes=6*10;
 var currentpos=-1;
+
 function clrholes() {
 for(var k=0;k<document.dmz.elements.length;k++)
 document.dmz.elements[k].checked=false;
 }
+
 function stoptimer() {
 if(playing)
 clearTimeout(timerID);
 }
+
 function showtime(remtime) {
 document.cpanel.timeleft.value=remtime;
 if(playing) {
@@ -29,6 +32,7 @@ timerID=setTimeout("showtime(temp)",1000);
       }
    }
 }
+
 function stopgame() {
 stoptimer();
 playing=false;
@@ -37,12 +41,14 @@ clrholes();
 display("Игра окончена");
 alert('Игра окончена.\nВаш счет:  '+totalhits);
 }
+
 function play() {
 stoptimer();
 if(playing) {
 stopgame();
 return;
 }
+
 playing=true;
 clrholes();
 totalhits=0;
@@ -50,9 +56,11 @@ document.cpanel.score.value=totalhits;
 display("Идет игра");
 launch();
 showtime(gamelength);
+
 function display(msg) {
 document.cpanel.state.value=msg;
 }
+
 function launch() {
 var launched=false;
 while(!launched) {
@@ -64,6 +72,7 @@ launched=true;
       }
    }
 }
+
 function hithead(id) {
 if(playing==false) {
 clrholes();
