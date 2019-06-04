@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.1/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.1/sch/docbook.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.1">
+    <info>
+        <title>Документация к проекту Hit-The-Dot</title>
+        <author>
+            <orgname>Александр Розинков</orgname>
+        </author>
+    </info>
+    
+    <section>
+        <title>Документация</title>
+        <section>
+            <title>Немного о проекте</title>
+            <para>Hit-The-Dot - это аркадная игра, которая помогает улучшить скорость реакции</para>
+        </section>
+    </section>
+    <section>
+        
+        <title>Описание игры</title>
+ 
+    <section>
+            <title>Об игре</title>
+            <para>Hit-The-Dot - это игра из разряда так называемых "убивалок времени", позволяющая
+                улучшить скорость реакции</para>
+    </section>
+    <section>
+        <title>Принцип игры</title>
+        <para>Цель игры состоит в том, чтобы за отведенное время набрать как можно больше баллов.
+                Баллы начисляются за каждую верно нажатую кнопку, отнимаются - за каждую неверно
+                нажатую.</para>
+    </section>
+    </section>
+    <section>
+        <title>Иллюстрации</title>
+        <orderedlist>
+            <listitem>
+                <para>
+                    <emphasis>Старт</emphasis>
+                </para>
+                <para>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata align="center" scale="100" fileref="images/1.JPG"/>
+                        </imageobject>
+                    </mediaobject>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis>Игровой процесс</emphasis>
+                </para>
+                <para>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata align="center" scale="100" fileref="images/2.JPG"/>
+                        </imageobject>
+                    </mediaobject>
+                </para>
+            </listitem>
+        </orderedlist>
+    </section>
+    
+    <section>
+        <title>Детали реализации</title>
+        <para>Особенности реализации отдельного функционала представлены ниже:</para>
+        <section>
+            <title>Отображение оставшегося времени</title>
+            <para>Данная функция вызывается при старте и отображает остаток времени в секундах для
+                текущего раунда</para>
+            <programlisting>
+                <![CDATA[
+    function showtime(remtime) {
+document.cpanel.timeleft.value=remtime;
+if(playing) {
+if(remtime==0) {
+stopgame();
+return;
+}
+else {
+temp=remtime-1;
+timerID=setTimeout("showtime(temp)",1000);
+      }
+   }
+}
+                ]]>
+            </programlisting>
+        </section>
+
+    
+    <section>
+            <title>Начисление баллов</title>
+            <para>Функция вызывается при каждом клике в игровой области. При удачном попадании
+                количество баллов увеличивается на один, при неудачном - уменьшается.</para>
+            <programlisting>
+                <![CDATA[
+    function hithead(id) {
+if(playing==false) {
+clrholes();
+display("Нажмите Старт, чтобы играть");
+return;
+}
+if(currentpos!=id) {
+totalhits+=-1;
+document.cpanel.score.value=totalhits;
+document.dmz.elements[id].checked=false;
+}
+else {
+totalhits+=1;
+document.cpanel.score.value=totalhits;
+launch();
+document.dmz.elements[id].checked=false;
+   }
+}
+                ]]>
+            </programlisting>
+        
+    </section>
+    
+    <section>
+            <title>Очистка поля</title>
+            <para>Функция вызывается каждый раз при завершении раунда игры. Очищает все поле игры от
+                точек.</para>
+            <programlisting>
+                <![CDATA[
+    function clrholes() {
+for(var k=0;k<document.dmz.elements.length;k++)
+document.dmz.elements[k].checked=false;
+}
+                ]]>
+            </programlisting>
+        
+    </section>
+    </section>
+</article>
