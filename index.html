@@ -64,6 +64,24 @@ launched=true;
       }
    }
 }
+function hithead(id) {
+if(playing==false) {
+clrholes();
+display("Нажмите Старт, чтобы играть");
+return;
+}
+if(currentpos!=id) {
+totalhits+=-1;
+document.cpanel.score.value=totalhits;
+document.dmz.elements[id].checked=false;
+}
+else {
+totalhits+=1;
+document.cpanel.score.value=totalhits;
+launch();
+document.dmz.elements[id].checked=false;
+   }
+}
 
 </head>
 <body>
