@@ -3,6 +3,8 @@
 
 <SCRIPT LANGUAGE="JavaScript">
 
+
+
 gamelength=30;
 timerID=null
 var playing=false;
@@ -12,7 +14,23 @@ function clrholes() {
 for(var k=0;k<document.dmz.elements.length;k++)
 document.dmz.elements[k].checked=false;
 }
-
+function stoptimer() {
+if(playing)
+clearTimeout(timerID);
+}
+function showtime(remtime) {
+document.cpanel.timeleft.value=remtime;
+if(playing) {
+if(remtime==0) {
+stopgame();
+return;
+}
+else {
+temp=remtime-1;
+timerID=setTimeout("showtime(temp)",1000);
+      }
+   }
+}
 
 </head>
 <body>
