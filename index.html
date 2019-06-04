@@ -3,19 +3,28 @@
  
 <SCRIPT LANGUAGE="JavaScript">
 
-gamelength=30;
-timerID=null
-var playing=false;
-var numholes=6*10;
-var currentpos=-1;
+gamelength=30;//длительность игры в сек
+timerID=null //таймер
+var playing=false; //логическая переменная для отображения статуса
+var numholes=6*10; //кол-во точек на поле
+var currentpos=-1; //текущая позиция
+/**
+ ф-ция для очистки поля
+ */
 function clrholes() {
 for(var k=0;k<document.dmz.elements.length;k++)
 document.dmz.elements[k].checked=false;
 }
+/**
+ ф-ция для сброса таймера
+ */
 function stoptimer() {
 if(playing)
 clearTimeout(timerID);
 }
+/**
+ ф-ция для отоброжения остатка времени
+ */
 function showtime(remtime) {
 document.cpanel.timeleft.value=remtime;
 if(playing) {
@@ -29,6 +38,9 @@ timerID=setTimeout("showtime(temp)",1000);
       }
    }
 }
+/**
+ ф-ция для опредления конца игры
+ */
 function stopgame() {
 stoptimer();
 playing=false;
@@ -37,6 +49,9 @@ clrholes();
 display("Игра окончена");
 alert('Игра окончена.\nВаш счет:  '+totalhits);
 }
+/**
+ ф-ция для старта игры
+ */
 function play() {
 stoptimer();
 if(playing) {
@@ -54,6 +69,9 @@ showtime(gamelength);
 function display(msg) {
 document.cpanel.state.value=msg;
 }
+/**
+ ф-ция для инициализации старта
+ */
 function launch() {
 var launched=false;
 while(!launched) {
@@ -65,7 +83,9 @@ launched=true;
       }
    }
 }
- 
+ /**
+ ф-ция для изменения текущего статуса игры
+ */
 function hithead(id) {
 if(playing==false) {
 clrholes();
@@ -83,6 +103,12 @@ document.cpanel.score.value=totalhits;
 launch();
 document.dmz.elements[id].checked=false;
    }
+}
+/**
+ рандомайзер
+ */
+function random() {
+return(Math.floor(Math.random()*100%numholes));
 }
 </script>
 </head>
