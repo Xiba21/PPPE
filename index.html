@@ -3,7 +3,7 @@
  
 <SCRIPT LANGUAGE="JavaScript">
 
-gamelength=30;//длительность игры в сек
+gamelength=10;//длительность игры в сек
 timerID=null //таймер
 var playing=false; //логическая переменная для отображения статуса
 var numholes=6*10; //кол-во точек на поле
@@ -24,6 +24,7 @@ clearTimeout(timerID);
 }
 /**
  ф-ция для отоброжения остатка времени
+ в качестве аргумента принимает оставшееся врямя раунда
  */
 function showtime(remtime) {
 document.cpanel.timeleft.value=remtime;
@@ -66,6 +67,10 @@ display("Идет игра");
 launch();
 showtime(gamelength);
 }
+/**
+ ф-ция для отображения статуса игры(идет в данный момент процесс игры или нет)
+ в качестве аргумента принимает логическую переменную, отвечающую за это
+ */
 function display(msg) {
 document.cpanel.state.value=msg;
 }
@@ -85,6 +90,7 @@ launched=true;
 }
  /**
  ф-ция для изменения текущего статуса игры
+ в качестве аргумента принимает индекс точки, по которой был совершен клик
  */
 function hithead(id) {
 if(playing==false) {
