@@ -3,27 +3,27 @@
  
 <SCRIPT LANGUAGE="JavaScript">
 
-gamelength=30;//длительность игры в сек
-timerID=null //таймер
-var playing=false; //логическая переменная для отображения статуса
-var numholes=6*10; //кол-во точек на поле
-var currentpos=-1; //текущая позиция
+gamelength=30;//РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ РёРіСЂС‹ РІ СЃРµРє
+timerID=null //С‚Р°Р№РјРµСЂ
+var playing=false; //Р»РѕРіРёС‡РµСЃРєР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЃС‚Р°С‚СѓСЃР°
+var numholes=6*10; //РєРѕР»-РІРѕ С‚РѕС‡РµРє РЅР° РїРѕР»Рµ
+var currentpos=-1; //С‚РµРєСѓС‰Р°СЏ РїРѕР·РёС†РёСЏ
 /**
- ф-ция для очистки поля
+ С„-С†РёСЏ РґР»СЏ РѕС‡РёСЃС‚РєРё РїРѕР»СЏ
  */
 function clrholes() {
 for(var k=0;k<document.dmz.elements.length;k++)
 document.dmz.elements[k].checked=false;
 }
 /**
- ф-ция для сброса таймера
+ С„-С†РёСЏ РґР»СЏ СЃР±СЂРѕСЃР° С‚Р°Р№РјРµСЂР°
  */
 function stoptimer() {
 if(playing)
 clearTimeout(timerID);
 }
 /**
- ф-ция для отоброжения остатка времени
+ С„-С†РёСЏ РґР»СЏ РѕС‚РѕР±СЂРѕР¶РµРЅРёСЏ РѕСЃС‚Р°С‚РєР° РІСЂРµРјРµРЅРё
  */
 function showtime(remtime) {
 document.cpanel.timeleft.value=remtime;
@@ -39,18 +39,18 @@ timerID=setTimeout("showtime(temp)",1000);
    }
 }
 /**
- ф-ция для опредления конца игры
+ С„-С†РёСЏ РґР»СЏ РѕРїСЂРµРґР»РµРЅРёСЏ РєРѕРЅС†Р° РёРіСЂС‹
  */
 function stopgame() {
 stoptimer();
 playing=false;
 document.cpanel.timeleft.value=0;
 clrholes();
-display("Игра окончена");
-alert('Игра окончена.\nВаш счет:  '+totalhits);
+display("РРіСЂР° РѕРєРѕРЅС‡РµРЅР°");
+alert('РРіСЂР° РѕРєРѕРЅС‡РµРЅР°.\nР’Р°С€ СЃС‡РµС‚:  '+totalhits);
 }
 /**
- ф-ция для старта игры
+ С„-С†РёСЏ РґР»СЏ СЃС‚Р°СЂС‚Р° РёРіСЂС‹
  */
 function play() {
 stoptimer();
@@ -62,7 +62,7 @@ playing=true;
 clrholes();
 totalhits=0;
 document.cpanel.score.value=totalhits;
-display("Идет игра");
+display("РРґРµС‚ РёРіСЂР°");
 launch();
 showtime(gamelength);
 }
@@ -70,7 +70,7 @@ function display(msg) {
 document.cpanel.state.value=msg;
 }
 /**
- ф-ция для инициализации старта
+ С„-С†РёСЏ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё СЃС‚Р°СЂС‚Р°
  */
 function launch() {
 var launched=false;
@@ -84,12 +84,12 @@ launched=true;
    }
 }
  /**
- ф-ция для изменения текущего статуса игры
+ С„-С†РёСЏ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ С‚РµРєСѓС‰РµРіРѕ СЃС‚Р°С‚СѓСЃР° РёРіСЂС‹
  */
 function hithead(id) {
 if(playing==false) {
 clrholes();
-display("Нажмите Старт, чтобы играть");
+display("РќР°Р¶РјРёС‚Рµ РЎС‚Р°СЂС‚, С‡С‚РѕР±С‹ РёРіСЂР°С‚СЊ");
 return;
 }
 if(currentpos!=id) {
@@ -105,7 +105,7 @@ document.dmz.elements[id].checked=false;
    }
 }
 /**
- рандомайзер
+ СЂР°РЅРґРѕРјР°Р№Р·РµСЂ
  */
 function random() {
 return(Math.floor(Math.random()*100%numholes));
@@ -115,21 +115,21 @@ return(Math.floor(Math.random()*100%numholes));
 
 <body>
 
-<center><h2><font color="green" face="Arial">Попади по точке</font></h2></center>
-<center>Сколько точек ты сможешь нажать за отведенное время?</center>
+<center><h2><font color="green" face="Arial">РџРѕРїР°РґРё РїРѕ С‚РѕС‡РєРµ</font></h2></center>
+<center>РЎРєРѕР»СЊРєРѕ С‚РѕС‡РµРє С‚С‹ СЃРјРѕР¶РµС€СЊ РЅР°Р¶Р°С‚СЊ Р·Р° РѕС‚РІРµРґРµРЅРЅРѕРµ РІСЂРµРјСЏ?</center>
 <form name="cpanel">
 <center>
 <table cellspacing=3>
 <tr>
-<td><input type="button" name="startstop" value=" Старт | Стоп " onClick="play()"></td>
+<td><input type="button" name="startstop" value=" РЎС‚Р°СЂС‚ | РЎС‚РѕРї " onClick="play()"></td>
 <td><pre>    </pre></td>
-<td align=right>Время:</td>
+<td align=right>Р’СЂРµРјСЏ:</td>
 <td><input type="text" name="timeleft" size="4" onFocus="this.blur()"></td>
 </tr>
 <tr>
-<td><input type="text" name="state" size="20" value="Нажмите Старт для игры" onFocus="this.blur()"></td>
+<td><input type="text" name="state" size="20" value="РќР°Р¶РјРёС‚Рµ РЎС‚Р°СЂС‚ РґР»СЏ РёРіСЂС‹" onFocus="this.blur()"></td>
 <td><pre>    </pre></td>
-<td align=right>Счет:</td>
+<td align=right>РЎС‡РµС‚:</td>
 <td><input type="text" name="score" size="4" onFocus="this.blur()"></td>
 </tr>
 </table>
@@ -217,10 +217,10 @@ return(Math.floor(Math.random()*100%numholes));
 </tr></table></center></form>
  
 <center><table cellspacing=3><tr><td><code>
-<p><strong>Инструкция:</strong>
-<ol><li>Нажимайте на кнопки, когда они <BR>
-выбираются случайным образом компьютером<BR>
-<li>При попадании +1 балл, при промахе - -1<BR>
+<p><strong>РРЅСЃС‚СЂСѓРєС†РёСЏ:</strong>
+<ol><li>РќР°Р¶РёРјР°Р№С‚Рµ РЅР° РєРЅРѕРїРєРё, РєРѕРіРґР° РѕРЅРё <BR>
+РІС‹Р±РёСЂР°СЋС‚СЃСЏ СЃР»СѓС‡Р°Р№РЅС‹Рј РѕР±СЂР°Р·РѕРј РєРѕРјРїСЊСЋС‚РµСЂРѕРј<BR>
+<li>РџСЂРё РїРѕРїР°РґР°РЅРёРё +1 Р±Р°Р»Р», РїСЂРё РїСЂРѕРјР°С…Рµ - -1<BR>
 </ol></td></tr></table></center>
 </body>
 </html>
